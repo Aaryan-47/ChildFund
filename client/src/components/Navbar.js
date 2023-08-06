@@ -59,9 +59,9 @@ function Navbar() {
           Child Fund
         </Typography>
           <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>Testimonials</Link>
+            <Link to="/testimonials" className={classes.link}>Testimonials</Link>
             <Link to="/" className={classes.link}>Your Donations</Link>
-            <Link to="/" className={classes.link}>Home</Link>
+            <Link to="/main" className={classes.link}>Home</Link>
           </div>
           <div className={classes.navButtons}>
             <Button style={{backgroundColor:"blue",color:"white"}}className={classes.Buttons} variant="contained"size="large">Logout</Button>

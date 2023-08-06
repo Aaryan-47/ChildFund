@@ -13,6 +13,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
+import {useNavigate} from 'react-router-dom';
 import { createTheme, responsiveFontSizes,ThemeProvider } from '@mui/material/styles';
 
 import {createMedia} from '@artsy/fresnel'
@@ -53,6 +54,7 @@ import {
     },
     Card: {
         width: 360,
+        borderRadius:"10%",
         margin: 'auto',
       },
       Media: {
@@ -70,6 +72,7 @@ function Main(){
     const [age,setAge]=useState('');
     const [gender,setGender]=useState('');
     const [location,setLocation]=useState('');
+    const navigate=useNavigate()
     useEffect(()=>{
      async function fetchChildren(){
      const res=await axios.get('http://localhost:4000/server/child')
@@ -78,9 +81,38 @@ function Main(){
      }
      fetchChildren()
     },[])
-
+    
     const handle=()=>{
+      const FilterByLocation=(array)=>{
+        if(location!=="")
+        {
+          //console.log("fuck")
+         return array.filter((index)=>index.location===location)
+        }
+        else
+        {
+         return array
+        }
+     }
 
+     const FilterByGender=(array)=>{
+      if(gender!=="")
+      {
+        console.log(gender)
+        
+        return array.filter((index)=>index.gender===gender)
+      }
+      else
+      {
+        return array;
+      }
+    }
+     setChildren(FilterByGender(FilterByLocation(children)))
+    }
+
+    const Choose=(id)=>{
+     
+       navigate(`/child/:${id}`)
     }
     return (<>
      <Navbar/>
@@ -176,8 +208,8 @@ function Main(){
       <MenuItem value="">
         <em>All</em>
       </MenuItem>
-      <MenuItem value={"Male"}>Male</MenuItem>
-      <MenuItem value={"Female"}>Female</MenuItem>
+      <MenuItem value={"male"}>Male</MenuItem>
+      <MenuItem value={"female"}>Female</MenuItem>
     </Select>
     </Grid>
 
@@ -194,18 +226,18 @@ function Main(){
     <Grid container spacing={5}direction="row"
             justify="flex-start"
             alignItems="flex-start" style={{marginTop:"3%"}}>
-        { children?.map((index)=>(
+        { children!==""&&children.map((index)=>(
         <Grid item xs={12} sm={6} md={4} >
         <Card className={classes.Card}xs={4}>
          <CardMedia
            component="img"
-           height="140"
+           height="220"
            image={index.picUrl}
            alt="">
          </CardMedia>
          <CardContent>
             <Typography style={{color:"purple",fontWeight:1000,fontFamily:"Poppins"}}variant="h6" component="div">
-             {index.age}$/month 
+             {index.age} years old 
             </Typography>
             <Typography style={{fontFamily:"Poppins",fontWeight:1000}}variant="h5"component="div">
                 {index.name}
@@ -213,6 +245,9 @@ function Main(){
             <Typography style={{marginTop:"4%",color:"grey"}}variant="body2">
                 {index.bio}
             </Typography>
+            <br></br>
+          
+            <Button style={{marginLeft:"25%",backgroundColor:"blue",color:"white"}} size="large" onClick={()=>{Choose(index._id)}}>Choose Me</Button>
          </CardContent>
         
         </Card>  

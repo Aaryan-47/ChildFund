@@ -57,7 +57,7 @@ router.post("/signup", async (req, res) => {
 
   router.post("/login", async (req, res) => {
     const { email, password } = req.body.formData;
-  
+    
     if (!isEmail(email)) return res.status(401).send("Invalid Email");
   
     if (password.length < 6) {
@@ -72,15 +72,17 @@ router.post("/signup", async (req, res) => {
       if (!user) {
         return res.status(401).send("Invalid Credentials");
       }
-  
+      
       const isPassword = await bcrypt.compare(password, user.password);
       if (!isPassword) {
         return res.status(401).send("Invalid Credentials");
       }
   
       const payload = { userId: user._id };
+      console.log(payload)
       jwt.sign(payload, process.env.jwt_Secret, { expiresIn: "2d" }, (err, token) => {
         if (err) throw err;
+       
         res.status(200).json(token);
       });
     } catch (error) {

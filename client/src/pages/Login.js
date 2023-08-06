@@ -27,6 +27,7 @@ function Login(){
   const handleSubmit=async (e)=>{
     e.preventDefault();
     try{
+      console.log(formData)
       const res=await axios.post("http://localhost:4000/server/auth/login", {formData})
       setToken(res.data);
       
