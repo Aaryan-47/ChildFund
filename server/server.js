@@ -4,6 +4,7 @@ const connectDb=require('./utilsServer/connectDb');
 const auth=require('./routes/auth')
 const child=require('./routes/children')
 const mail=require('./routes/sendEmail')
+const stripe=require('./routes/stripe')
 require("dotenv").config({path:"./config.env"})
 const PORT = process.env.PORT || 4000;
 const app=express()
@@ -22,6 +23,7 @@ async function bootstrap(){
    app.use("/server/auth",auth);
    app.use("/server/child",child);
    app.use("/server/mail",mail);
+   app.use("/server/stripe",stripe)
    return http.createServer(app).listen(4000);
 }
 

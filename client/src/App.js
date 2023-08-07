@@ -4,6 +4,7 @@ import Main from "./pages/Main";
 import SignUp from "./pages/signup";
 import Single from "./pages/Single";
 import Testimonials from "./pages/Testimonial";
+import CheckOutSuccess from "./components/CheckOut-Success";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
      <Routes>
        <Route path="/main" element={<Main/>}/>
        <Route path="/signup" element={<SignUp/>}/>
+       <Route path="/checkout-success" element={<CheckOutSuccess/>}/>
        <Route path="/"element={<Login/>}/>
        <Route path="/child/:id"element={<Single/>}/> 
        <Route path="/testimonials"element={<Testimonials/>}/> 

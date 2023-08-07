@@ -21,7 +21,18 @@ function Single(){
     }
     fetchChildren()
    },[])
-
+   
+    const handleCheckout=async ()=>{
+      const res=await axios.post(`http://localhost:4000/server/stripe/create-checkout-session`,{amount:30});
+        if(res.data.url)
+        {
+            window.location.href=res.data.url
+        }
+        else
+        {
+            console.log("Error")
+        }
+    }
    
     return (
     <>
@@ -61,7 +72,7 @@ function Single(){
           </h6>
         </div>
          <div className="btn_div mt-4">
-              <Button variant="danger" style={{ letterSpacing: "1px", border: "none", borderRadius: 4, background: "#2f2d69", marginRight: 24 }}>Sponser Me</Button>
+              <Button variant="danger" onClick={()=>{handleCheckout()}}style={{ letterSpacing: "1px", border: "none", borderRadius: 4, background: "#2f2d69", marginRight: 24 }}>Sponser Me</Button>
               
             </div>
 
