@@ -11,7 +11,7 @@ function Donations(){
     {
         const res=await axios.get('http://localhost:4000/server/donation/:6499b06ea9f276af44e7f627')
         setDonationDetails(res.data.data);
-        //console.log(res.data.data)
+        console.log(res.data.data)
     }
     fetchDetails()
     },[])

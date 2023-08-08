@@ -3,7 +3,6 @@ import { useLocation } from 'react-router';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 import "./SIngle.css";
-import {useLocation} from 'react-router';
 import Navbar from '../components/Navbar';
 import cookie from 'js-cookie'
 import jwt_decode from 'jwt-decode';
@@ -33,9 +32,8 @@ function Single(){
       window.location.href = res.data.url;
     } else {
       console.log('Error');
-    fetchChildren()
    }
-   
+  }
     
 
   return (
@@ -100,6 +98,6 @@ function Single(){
     </>
   );
   }
-}
+
 
 export default Single;

@@ -6,7 +6,7 @@ const router=express.Router()
 router.get('/:id',async(req,res)=>{
     const temp=req.params.id;
     const userId=temp.slice(1)
-    //console.log(userId)
+    console.log(userId)
     try{
 
       const response=await DonationModel.find({userId:userId});
