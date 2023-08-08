@@ -4,10 +4,15 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 import "./SIngle.css";
 import {useLocation} from 'react-router';
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar';
+import cookie from 'js-cookie'
+import jwt_decode from 'jwt-decode';
 
 function Single(){
-  
+  const tok=cookie.get("token")
+  const decodedToken=jwt_decode(tok)
+  console.log(decodedToken) 
+  const [user,setUser]=useState(decodedToken.userId)
   const [child,setChild]=useState('');
   const id=useLocation()
   let loc=id.pathname.split("/")[2];
@@ -23,9 +28,11 @@ function Single(){
    },[])
    
     const handleCheckout=async ()=>{
+     
       const res=await axios.post(`http://localhost:4000/server/stripe/create-checkout-session`,{amount:30});
         if(res.data.url)
         {
+            await axios.post(`http://localhost:4000/server/donation`,{userId:user,childId:child._id})
             window.location.href=res.data.url
         }
         else

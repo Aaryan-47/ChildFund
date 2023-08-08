@@ -60,7 +60,7 @@ function Navbar() {
         </Typography>
           <div className={classes.navlinks}>
             <Link to="/testimonials" className={classes.link}>Testimonials</Link>
-            <Link to="/" className={classes.link}>Your Donations</Link>
+            <Link to="/donations" className={classes.link}>Your Donations</Link>
             <Link to="/main" className={classes.link}>Home</Link>
           </div>
           <div className={classes.navButtons}>

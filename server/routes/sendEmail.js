@@ -1,6 +1,7 @@
 const express=require('express');
 const nodemailer=require('nodemailer');
 const router=express.Router();
+const UserModel=require('../models/UserModel')
 
 const transporter=nodemailer.createTransport({
     host:'smtp.gmail.com',
@@ -14,12 +15,15 @@ const transporter=nodemailer.createTransport({
 });
 
 router.post('/sendMail',async(req,res)=>{
-    const{mail}=req.body;
+    const{userId}=req.body;
+    console.log(req);
+    const resp=await UserModel.findById(userId);
+
     const mailOptions = {
         from: 'gtaloveraaryan@gmail.com',
-        to: `${mail}`,
-        subject: 'Test Email for PR Project',
-        text: 'This is a test email sent from ChildFund App. Please verify'
+        to: `${resp.email}`,
+        subject: 'Donation Succesfull',
+        text: `Dear ${resp.name} your donation on our application. ChildFund has been succesfully received. We thank you for your contribution towards a better society`
       };
 
       transporter.sendMail(mailOptions,(error,info)=>{

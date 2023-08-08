@@ -5,6 +5,7 @@ import SignUp from "./pages/signup";
 import Single from "./pages/Single";
 import Testimonials from "./pages/Testimonial";
 import CheckOutSuccess from "./components/CheckOut-Success";
+import Donations from "./pages/Donations";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
        <Route path="/checkout-success" element={<CheckOutSuccess/>}/>
        <Route path="/"element={<Login/>}/>
        <Route path="/child/:id"element={<Single/>}/> 
-       <Route path="/testimonials"element={<Testimonials/>}/> 
+       <Route path="/testimonials"element={<Testimonials/>}/>
+       <Route path="/donations"element={<Donations/>}/>  
      </Routes>
    </BrowserRouter>
   );
