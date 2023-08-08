@@ -55,9 +55,11 @@ function Navbar() {
       <CssBaseline />
       <Toolbar>
        
-        <Typography variant="h4" className={classes.logo}>
-          Child Fund
-        </Typography>
+          <Link to="/main" className={classes.link}>
+            <Typography variant="h4" className={classes.logo}>
+              Child Fund
+            </Typography>
+          </Link>
           <div className={classes.navlinks}>
             <Link to="/testimonials" className={classes.link}>Testimonials</Link>
             <Link to="/" className={classes.link}>Your Donations</Link>

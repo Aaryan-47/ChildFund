@@ -50,6 +50,28 @@ export default class Testimonials extends Component {
             </p>
           </div>
         </div>
+
+        <div>
+          <img src="/images/Abhishek web.jpg" />
+          <div className="myCarousel">
+            <h3>Abhishek Ramgoliyan</h3>
+            <h4>Co-Founder</h4>
+            <p>
+            Thank you Child Fund for the wonderful work you do, and for allowing people like me to be able to help! I sponsor 7 children and I have loved each and every one of them from day 1!
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <img src="/images/ayush.jpg" />
+          <div className="myCarousel">
+            <h3>Ayush</h3>
+            <h4>Software Engineer</h4>
+            <p>
+            Yes, I would recommend Compassion to a friend. As a current sponsor of 4 kids, I can highly recommend Compassion! I started sponsoring 2 kids 1.5 years ago and have had such a pleasant experience that God called me to sponsor 2 more kids!
+            </p>
+          </div>
+        </div>
       </Carousel>
       </>
     );

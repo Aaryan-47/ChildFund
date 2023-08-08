@@ -16,7 +16,7 @@ router.post('/create-checkout-session', async (req, res) => {
             product_data: {
               name: 'Donation',
             },
-            unit_amount: 3000,
+            unit_amount: 300,
           },
           quantity: 1,
         },
