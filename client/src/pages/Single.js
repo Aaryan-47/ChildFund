@@ -34,22 +34,9 @@ function Single(){
     } else {
       console.log('Error');
     fetchChildren()
-   },[])
+   }
    
-    const handleCheckout=async ()=>{
-     
-      const res=await axios.post(`http://localhost:4000/server/stripe/create-checkout-session`,{amount:30});
-        if(res.data.url)
-        {
-            await axios.post(`http://localhost:4000/server/donation`,{userId:user,childId:child._id})
-            window.location.href=res.data.url
-        }
-        else
-        {
-            console.log("Error")
-        }
-    }
-  };
+    
 
   return (
     <>
@@ -112,6 +99,7 @@ function Single(){
       </div>
     </>
   );
+  }
 }
 
 export default Single;
