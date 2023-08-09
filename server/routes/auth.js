@@ -17,9 +17,9 @@ router.post("/signup", async (req, res) => {
       password,
     } = req.body.formData;
    // console.log(req)
-    // console.log(username);
-    // console.log(email);
-    // console.log(password);
+    console.log(username);
+    console.log(email);
+    console.log(password);
     if (!isEmail(email)) return res.status(401).send("Invalid Email");
   
     if (password.length < 6) {

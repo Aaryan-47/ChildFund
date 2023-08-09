@@ -16,7 +16,7 @@ const transporter=nodemailer.createTransport({
 
 router.post('/sendMail',async(req,res)=>{
     const{userId}=req.body;
-    console.log(req);
+   // console.log(req);
     const resp=await UserModel.findById(userId);
 
     const mailOptions = {
@@ -28,7 +28,7 @@ router.post('/sendMail',async(req,res)=>{
 
       transporter.sendMail(mailOptions,(error,info)=>{
         if(error){
-            console.log(error);
+            //console.log(error);
             res.status(500).send('Error Sending Email');
         }
         else{

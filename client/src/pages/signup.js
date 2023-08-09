@@ -25,7 +25,9 @@ function SignUp(){
     e.preventDefault();
     try {
       //console.log(formData)
+      console.log(formData)
       const res= await axios.post('http://localhost:4000/server/auth/signup', {formData});
+      console.log(res)
       navigate('/')
       
     } catch (error) {
