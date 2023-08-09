@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 import cookie from 'js-cookie';
-import jwt_decode from 'jwt-decode';
+import { Link } from "react-router-dom";
 import "./style.css";
 
 
@@ -66,6 +66,9 @@ function Login(){
         />
       </div>
       <button type="submit">Login</button>
+      <div>
+    <h3 >Don't have an account? <h3 style={{ color: 'blue' }}><Link to='/signup'>SignUp</Link></h3> </h3>
+   </div>
     </form>
   
    </>)

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import cookie from "js-cookie";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function SignUp(){
   const [formData,setFormData]=useState({
@@ -9,10 +9,9 @@ function SignUp(){
     password:''
   })
 
-  const setToken = token => {
-    cookie.set("token", token);
-    
-  };
+  const navigate=useNavigate()
+
+  
 
   const handleChange=(e)=>{
     const { name, value } = e.target;
@@ -27,8 +26,8 @@ function SignUp(){
     try {
       //console.log(formData)
       const res= await axios.post('http://localhost:4000/server/auth/signup', {formData});
-      console.log(res);
-      setToken(res.data);
+      navigate('/')
+      
     } catch (error) {
       console.error('Error occurred during signup:', error);
     }

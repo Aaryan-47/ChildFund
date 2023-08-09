@@ -72,42 +72,60 @@ function Main(){
     const [age,setAge]=useState('');
     const [gender,setGender]=useState('');
     const [location,setLocation]=useState('');
+    const[check,setCheck]=useState(0)
     const navigate=useNavigate()
     useEffect(()=>{
      async function fetchChildren(){
      const res=await axios.get('http://localhost:4000/server/child')
-     setChildren(res.data.data);
-    console.log(res.data.data)
-     }
-     fetchChildren()
-    },[])
-    
-    const handle=()=>{
-      const FilterByLocation=(array)=>{
-        if(location!=="")
-        {
-          //console.log("fuck")
-         return array.filter((index)=>index.location===location)
-        }
-        else
-        {
-         return array
-        }
-     }
-
-     const FilterByGender=(array)=>{
-      if(gender!=="")
+     let array=res.data.data;
+     const FilterByLocation=(array)=>{
+      if(location!=="")
       {
-        console.log(gender)
-        
-        return array.filter((index)=>index.gender===gender)
+        //console.log("fuck")
+       return array.filter((index)=>index.location===location)
       }
       else
       {
-        return array;
+       return array
       }
+   }
+
+   const FilterByGender=(array)=>{
+    if(gender!=="")
+    {
+      //console.log(gender)
+      
+      return array.filter((index)=>index.gender===gender)
     }
-     setChildren(FilterByGender(FilterByLocation(children)))
+    else
+    {
+      return array;
+    }
+  }
+
+  const FilterByAge=(array)=>{
+    if(age!=="")
+    {
+      //console.log(array)
+       const ageArray=age.split('-');
+       return array.filter((index)=>index.age>=Number(ageArray[0])&&index.age<=Number(ageArray[1]))
+    }
+    else
+    {
+      return array;
+    }
+  }
+   setChildren(FilterByAge(FilterByGender(FilterByLocation(array))))
+    console.log(res.data.data)
+     }
+     fetchChildren()
+    },[check])
+    
+    const handle=()=>{
+      if(check===0)
+      setCheck(1)
+      else
+      setCheck(0)
     }
 
     const Choose=(id)=>{

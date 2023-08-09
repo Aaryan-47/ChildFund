@@ -8,6 +8,8 @@ import {
   Button,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import cookie from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +50,11 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
   const classes = useStyles();
+  const navigate=useNavigate()
+  const logOut=()=>{
+    cookie.remove("token")
+    navigate('/')
+  }
 
   return (
     <>
@@ -66,7 +73,7 @@ function Navbar() {
             <Link to="/main" className={classes.link}>Home</Link>
           </div>
           <div className={classes.navButtons}>
-            <Button style={{backgroundColor:"blue",color:"white"}}className={classes.Buttons} variant="contained"size="large">Logout</Button>
+            <Button style={{backgroundColor:"blue",color:"white"}}className={classes.Buttons} onClick={logOut} variant="contained"size="large">Logout</Button>
             
           </div>
       </Toolbar>

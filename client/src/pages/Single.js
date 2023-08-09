@@ -16,7 +16,7 @@ function Single(){
   const id=useLocation()
   let loc=id.pathname.split("/")[2];
   let loc2=loc.split(':')[1];
- 
+  const [amount,setAmount]=useState(30);
   useEffect(()=>{
     async function fetchChildren(){
     const res=await axios.get(`http://localhost:4000/server/child/${loc2}`)
@@ -27,7 +27,7 @@ function Single(){
   }, []);
 
   const handleCheckout = async () => {
-    const res = await axios.post(`http://localhost:4000/server/stripe/create-checkout-session`, { amount: 3});
+    const res = await axios.post(`http://localhost:4000/server/stripe/create-checkout-session`, { amount: amount});
     if (res.data.url) {
       window.location.href = res.data.url;
     } else {
@@ -76,6 +76,8 @@ function Single(){
             <input
               type="text"
               placeholder="Enter Amount"
+              value={amount}
+              onChange={(e)=>{setAmount(e.target.value)}}
               
             />
           </div>
